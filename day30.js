@@ -95,6 +95,10 @@ let getRandomMole = e => {
 
 // 開始遊戲-注意HTML上有一個onClick="startGame()"
 const startGame = e => {
+    //如果時間還沒到，就不能重複按開始遊戲
+    if (!timeUp) {
+        return;
+    }
     setScore(0); //控制分數的方訊，一開始先歸零
     timeUp = false; //開始遊戲計時
     getRandomMole(); //隨機出現地鼠的方訊
@@ -103,3 +107,7 @@ const startGame = e => {
         (timeUp = true), console.log("time's up");
     }, 10000);
 };
+
+// 開始按鈕
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', startGame);
